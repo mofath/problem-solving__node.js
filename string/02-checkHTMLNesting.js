@@ -1,13 +1,15 @@
 // const str = "<div><div><b></b></div></div>" // true
-
 // const str = "<i><div><b></b></div></i>"; // true
-
-const str = "<div><div><b></b></div></p>" // div
-
+// const str = "<div><div><b></b></div></p>" // div
 // const str = `<div>abc </div><p><em><i>test test test</b></em></p>`; // i
+// const str = "<div><div><b></b></div></p>" // div
+// const str = "<p><div><b></b></div></p>"   // true
+const str = "<p><div>  </p></div>"            // p // failed
+// const str = "<p><div></b></a></div></p>" // b //failed
+// const str = "<p><div><b></b></div></p>"   // true
 
 
-const checkHTML = (str) => {
+const checkHTMLNesting = (str) => {
 
     const openingTags = str.match(/<\w+>/g);
 
