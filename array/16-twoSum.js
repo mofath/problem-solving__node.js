@@ -20,19 +20,31 @@ const twoSum_1 = (arr, target) => {
 // T(n) = O(n)
 // S(n) = O(n)
 const twoSum_2 = (arr, target) => {
-    let objArr = {};
-    let slowPtr = 0;
-    let fastPtr = 0;
+    let visitedArr = {};
 
-
-    while(slowPtr < arr.length) {
-        
+    for (let i = 0; i < arr.length; i++) {
+        const comp = target - arr[i];
+        if (!(comp in visitedArr)) visitedArr[arr[i]] = i;
+        else return [visitedArr[comp], i];
     }
-
-    
-
 };
 
 
+// sorting and using two pointer technique
+const twoSum_3 = (arr, target) => {
+
+    arr.sort((a, b) => a - b);
+
+    let p1 = 0;
+    let p2 = arr.length - 1;
+
+    while (p2 > p1) {
+        if (arr[p1] + arr[p2] === target) return [p1, p2];
+        else if (arr[p1] + arr[p2] > target) p2--;
+        else p1++;
+    };
+};
+
 console.log(twoSum_1(array, target));
 console.log(twoSum_2(array, target));
+console.log(twoSum_3(array, target));
