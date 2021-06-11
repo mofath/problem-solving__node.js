@@ -1,4 +1,4 @@
-const array = [1, 2, 5, 10, 15, 20];
+const array = [1, 2, 5, 15, 20];
 
 
 // using `reverse` built in function
@@ -37,7 +37,23 @@ const reverseArr_4 = (arr) => {
 };
 
 
+// reverse array in place
+const reverseArr_5 = (arr) => {
+   let max = arr.length - 1;
+
+   for (let i = 0; i < max / 2; i++) {
+      const temp = arr[i];
+      arr[i] = arr[max - i];
+      arr[max - i] = temp;
+   }
+
+   return arr;
+};
+
+
 console.log(reverseArr_1(array));
 console.log(reverseArr_2(array));
 console.log(reverseArr_3(array));
 console.log(reverseArr_4(array));
+console.log(reverseArr_5(array));
+
