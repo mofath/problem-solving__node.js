@@ -56,7 +56,7 @@ function rearrange(elements) {
         });
     })
 
-    return Object.keys(numObj).sort((a, b) => (numObj[a]) - numObj[b])
+    return Object.keys(numObj).sort((a, b) => (numObj[a]) - numObj[b]).map(el => parseInt(el))
 }
 
 console.log(rearrange(elements));
