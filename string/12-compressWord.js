@@ -44,35 +44,42 @@ function compressWord(word, k) {
     let occurObj = {}
 
     const countOcc = (word) => {
+
         const charArr = word.split("");
         let counter = 0;
 
         for (let i = 0; i < charArr.length - 1; i++) {
+
             if (charArr[i] === charArr[i + 1]) {
                 counter++;
                 occurObj[charArr[i]] = counter;
             } else {
                 counter = 1;
-            }
-        }
-    }
+            };
+
+        };
+    };
 
 
-    const compress = () => {
+    const compress = (word) => {
+
+        countOcc(word);
+
         for (char in occurObj) {
+
             if (occurObj[char] >= k) {
                 const re = new RegExp(`${char}`, "g");
                 word = word.replace(re, "");
                 occurObj = {};
-                countOcc(word);
-                return compress();
-            }
-        }
-        return word;
-    }
+                return compress(word);
+            };
 
-    countOcc(word);
-    return compress();
+        };
+
+        return word;
+    };
+
+    return compress(word);
 }
 
 
