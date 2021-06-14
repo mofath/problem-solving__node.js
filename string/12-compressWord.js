@@ -40,47 +40,33 @@ const k = 3;
  * @param {Number} k 
  */
 function compressWord(word, k) {
-
     let occurObj = {}
+    const charArr = word.split("");
+    let counter = 0;
 
-    const countOcc = (word) => {
-
-        const charArr = word.split("");
-        let counter = 0;
-
-        for (let i = 0; i < charArr.length - 1; i++) {
-
-            if (charArr[i] === charArr[i + 1]) {
-                counter++;
-                occurObj[charArr[i]] = counter;
-            } else {
-                counter = 1;
-            };
-
+    // count of consecutive occurrence
+    for (let i = 0; i < charArr.length - 1; i++) {
+        if (charArr[i] === charArr[i + 1]) {
+            counter++;
+            occurObj[charArr[i]] = counter;
+        } else {
+            counter = 1;
         };
     };
 
-
-    const compress = (word) => {
-
-        countOcc(word);
-
-        for (char in occurObj) {
-
-            if (occurObj[char] >= k) {
-                const re = new RegExp(`${char}`, "g");
-                word = word.replace(re, "");
-                occurObj = {};
-                return compress(word);
-            };
-
+    // remove character with highest repetitive sequence
+    for (char in occurObj) {
+        if (occurObj[char] >= k) {
+            const re = new RegExp(`${char}`, "g");
+            word = word.replace(re, "");
+            return compressWord(word, k);
         };
-
-        return word;
     };
 
-    return compress(word);
-}
+    return word;
+};
+
+
 
 
 console.log(compressWord(word, k));
